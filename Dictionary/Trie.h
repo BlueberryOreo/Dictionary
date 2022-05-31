@@ -7,8 +7,9 @@ struct Node {
 	char c;
 	vector<Node> children;
 	bool isEnd;
-	pair<string, string> word; //word-meaning
-	Node();
+	string word;
+	string meaning;
+	Node(char c='\0', bool isEnd=false);
 };
 
 class Trie
@@ -16,7 +17,7 @@ class Trie
 	Node root;
 public:
 	Trie();
-	void insert(string word);
-	string search(string word);
+	void insert(const string& word, const string& meaning);
+	string search(const string& word);
 };
 
