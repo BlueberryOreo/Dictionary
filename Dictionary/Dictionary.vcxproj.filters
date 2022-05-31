@@ -18,6 +18,9 @@
     <ClInclude Include="Trie.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Word.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Trie.cpp">
@@ -26,5 +29,13 @@
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Word.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\英汉字典数据.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
 </Project>

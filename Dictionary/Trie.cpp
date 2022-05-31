@@ -10,9 +10,9 @@ Trie::Trie()
 {
 }
 
-void Trie::insert(const string& word, const string& meaning)
+void Trie::insert(Word &word)
 {
-	int len = word.size();
+	int len = word.getSize();
 	Node* now = &root;
 	for (int i = 0; i < len; i ++) {
 		bool flag = false;
@@ -33,10 +33,9 @@ void Trie::insert(const string& word, const string& meaning)
 
 	(*now).isEnd = true;
 	(*now).word = word;
-	(*now).meaning = meaning;
 }
 
-string Trie::search(const string& word)
+Word Trie::search(const string& word)
 {
 	Node* now = &root;
 	int len = word.size();
@@ -49,9 +48,40 @@ string Trie::search(const string& word)
 				break;
 			}
 		}
-		if (!flag) return "";
+		if (!flag) return Word();
 	}
 	
-	if ((*now).isEnd) return (*now).meaning;
-	else return "";
+	if ((*now).isEnd) return (*now).word;
+	else return Word();
 }
+
+vector<Word> Trie::rubSearch(const string& word)
+{
+	vector<Word> ret;
+	int len = word.size();
+	Node* p = &root;
+	for (int i = 0; i < len; i ++) {
+		bool flag = false;
+		for (int j = 0; j < (*p).children.size(); j ++) {
+			if ((*p).children[j].c == word[i]) {
+				p = &((*p).children[j]);
+				flag = true;
+				break;
+			}
+		}
+		if (!flag) break;
+	}
+
+	queue<Node*> q;
+	q.push(p);
+	while (!q.empty()) {
+		Node* now = q.front();
+		q.pop();
+		if ((*now).isEnd) ret.push_back((*now).word);
+		for (int i = 0; i < (*now).children.size(); i ++) {
+			q.push(&(*now).children[i]);
+		}
+	}
+	return ret;
+}
+
