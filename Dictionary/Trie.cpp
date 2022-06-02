@@ -18,6 +18,7 @@ void Trie::insert(Word &word)
 		bool flag = false;
 		for (int j = 0; j < (*now).children.size(); j ++) {
 			if ((*now).children[j].c == word[i]) {
+				//该节点已经存储过这个字母
 				flag = true;
 				now = &(*now).children[j];
 				break;
@@ -48,6 +49,7 @@ Word Trie::search(const string& word)
 				break;
 			}
 		}
+		//该节点没有存储到这个字母，直接停止搜索
 		if (!flag) return Word();
 	}
 	

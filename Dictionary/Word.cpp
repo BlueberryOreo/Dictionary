@@ -24,15 +24,25 @@ Word::Word(string word, string meaning)
 
 void Word::setWord(string word)
 {
+	memset(vect, 0, sizeof(vect));
 	this->word = word;
 	for (int i = 0; i < word.size(); i ++) {
-		if(word[i] >> 7 == 0) vect[word[i]] ++;
+		if (word[i] >> 7 == 0) {
+			char tmp = word[i];
+			if ('A' <= tmp && tmp <= 'Z') tmp += 32;
+			vect[tmp] ++;
+		}
 	}
 }
 
 void Word::setMeaning(string meaning)
 {
 	this->meaning = meaning;
+}
+
+void Word::setDis(double dis)
+{
+	m_dis = dis;
 }
 
 string Word::getWord() const
@@ -76,7 +86,7 @@ double Word::operator^(const Word& tmp)
 		//cout << word1Arr[i] << " " << word2Arr[i] << endl;
 		dis += abs(vect[i] - tmp.vect[i]) * abs(vect[i] - tmp.vect[i]);
 	}
-	m_dis = sqrt(dis);
+	setDis(sqrt(dis));
 	return m_dis;
 }
 
@@ -86,7 +96,7 @@ int Word::operator|(const Word& tmp)
 	for (int i = 0; i < 256; i ++) {
 		dis += abs(vect[i] - tmp.vect[i]);
 	}
-	m_dis = dis;
+	setDis(dis);
 	return dis;
 }
 
@@ -98,4 +108,9 @@ bool Word::operator<(const Word& tmp) const
 char& Word::operator[](int i)
 {
 	return word[i];
+}
+
+ostream& operator<<(ostream &out, Word &w) {
+	out << w.word << " ÊÍÒå£º" << w.meaning;
+	return out;
 }
