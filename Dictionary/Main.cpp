@@ -6,9 +6,10 @@
 #define DEBUGn
 using namespace std;
 
-void importDict(const string &path, Trie &tree) {
+int importDict(const string &path, Trie &tree) {
 	ifstream ifs;
 	ifs.open(path);
+	if (!ifs) return 0;
 	string line;
 	while (getline(ifs, line)) {
 		string word, meaning;
@@ -24,6 +25,7 @@ void importDict(const string &path, Trie &tree) {
 	}
 	
 	ifs.close();
+	return 1;
 }
 
 /**
@@ -77,7 +79,11 @@ int main() {
 #endif
 	
 	Trie dict;
-	importDict("..\\..\\英汉字典数据.txt", dict);
+	int res = importDict("英汉字典数据.txt", dict);
+	if (!res) {
+		cout << "未找到词典文件！" << endl;
+		return 0;
+	}
 
 	cout << "请输入要查询的词语（输入###退出交互）：";
 	string query;

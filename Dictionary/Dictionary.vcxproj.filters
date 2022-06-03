@@ -34,7 +34,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\英汉字典数据.txt">
+    <Text Include="英汉字典数据.txt">
       <Filter>资源文件</Filter>
     </Text>
   </ItemGroup>
