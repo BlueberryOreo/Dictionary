@@ -2,6 +2,8 @@ Dictionary
 
 ## C++5月27日实践课
 
+编码：GBK
+
 源代码：
 
 * Main.cpp - 程序入口
