@@ -4,7 +4,7 @@ Dictionary
 
 源代码：
 
-* Main.cpp
+* Main.cpp - 程序入口
 * Trie.h - 字典树类
 * Trie.cpp
 * Word.h - 单词类
